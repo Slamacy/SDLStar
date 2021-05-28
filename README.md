@@ -1,2 +1,2 @@
 # SDLStar
-Singstar client for x64 platforms
+Potential Singstar client for x64 platforms
