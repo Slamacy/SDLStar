@@ -34,6 +34,9 @@ int main(int argc, char** argv) {
 	//		Create Audio Manager
 	//		Create User, Song, and whatever classes (we need to scope this shit once we know what we're doing)
 
+	
+	// create Drawer and Game Manager objs here and set up loop
+
 
 	TTF_Quit();
 	IMG_Quit();
