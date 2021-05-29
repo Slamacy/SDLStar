@@ -17,7 +17,7 @@ int main(int argc, char** argv) {
 	SDL_Renderer* renderer = SDL_CreateRenderer(window, -1, SDL_RENDERER_ACCELERATED);
 
 	if (!window) {
-		assert(0 && "Failed to create window!");
+		assert(0 && "Failed to create window!"); 
 		exit(-1);
 	}
 
