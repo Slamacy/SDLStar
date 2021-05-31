@@ -4,9 +4,21 @@
 #include "assert.h"
 #include <iostream>
 
+#include "Audio/SP_AudioDeviceManager.h"
+
 int main(int argc, char** argv) {
+
+	for (int i = 1; i < argc; i++) {
+		char* arg = argv[i];
+
+		if (strcmp(arg, "--debug")) {
+			std::cout << "Debug" << std::endl;
+			SDL_LogSetAllPriority(SDL_LOG_PRIORITY_WARN);
+		}
+	}
+
 	/* initialize SDL */
-	if (SDL_Init(SDL_INIT_VIDEO) < 0) {
+	if (SDL_Init(SDL_INIT_VIDEO | SDL_INIT_AUDIO | SDL_INIT_GAMECONTROLLER | SDL_INIT_TIMER) < 0) {
 		assert(0 && "Failed to initialize video!");
 		exit(-1);
 	}
@@ -37,6 +49,32 @@ int main(int argc, char** argv) {
 	
 	// create Drawer and Game Manager objs here and set up loop
 
+	SP_AudioDeviceManager* manager_playback = new SP_AudioDeviceManager(0);
+	SP_AudioDeviceManager* manager_recording = new SP_AudioDeviceManager(1);
+
+	SDL_Colour cBlack = { 255, 255, 255 };
+
+	TTF_Font* vietnamPro = TTF_OpenFont("../Resources/fonts/BeVietnamPro/BeVietnamPro-Black.ttf", 500);
+
+	SDL_Surface* text = TTF_RenderUTF8_Solid(vietnamPro, "SingParty", cBlack);
+	SDL_Texture* textTexture = SDL_CreateTextureFromSurface(renderer, text);
+	SDL_RenderCopy(renderer, textTexture, NULL, NULL);
+	SDL_RenderPresent(renderer);
+
+	SDL_Event currentEvent;
+	while (true)
+	{
+		SDL_PollEvent(&currentEvent);
+		if (currentEvent.type == SDL_QUIT) {
+			break;
+		}
+	}
+
+
+	delete manager_playback;
+	delete manager_recording;
+
+	TTF_CloseFont(vietnamPro);
 
 	TTF_Quit();
 	IMG_Quit();
