@@ -161,11 +161,23 @@
   <ItemGroup>
     <ClCompile Include="Audio\SP_AudioDevice.cpp" />
     <ClCompile Include="Audio\SP_AudioDeviceManager.cpp" />
+    <ClCompile Include="Context.cpp" />
+    <ClCompile Include="GUI\GUI_Window.cpp" />
+    <ClCompile Include="GUI\GUI_Label.cpp" />
     <ClCompile Include="Main.cpp" />
+    <ClCompile Include="Windows\MainMenu.cpp" />
   </ItemGroup>
   <ItemGroup>
+    <ClInclude Include="Audio\AudioUtils.h" />
     <ClInclude Include="Audio\SP_AudioDevice.h" />
     <ClInclude Include="Audio\SP_AudioDeviceManager.h" />
+    <ClInclude Include="Context.h" />
+    <ClInclude Include="GUI\GUI_Library.h" />
+    <ClInclude Include="GUI\interfaces\IDrawable.h" />
+    <ClInclude Include="GUI\interfaces\IInteractable.h" />
+    <ClInclude Include="GUI\GUI_Window.h" />
+    <ClInclude Include="GUI\GUI_Label.h" />
+    <ClInclude Include="Utils\PaintUtils.h" />
   </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
   <ImportGroup Label="ExtensionTargets">

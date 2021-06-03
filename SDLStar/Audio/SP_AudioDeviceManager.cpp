@@ -17,19 +17,15 @@ std::vector<SP_AudioDevice*>* SP_AudioDeviceManager::getAudioDevices() {
 	return devices;
 }
 	
-SP_AudioDeviceManager::SP_AudioDeviceManager() {
-	SP_AudioDeviceManager(0);
-}
-	
-SP_AudioDeviceManager::SP_AudioDeviceManager(int capturing) {
+SP_AudioDeviceManager::SP_AudioDeviceManager(int cap) {
 	SDL_LogDebug(0, "Registering new AudioDeviceManager. Capturing? %s \n", (capturing > 0 ? "Yes." : "No"));
-	this->capturing = capturing;
-	this->devices = new std::vector<SP_AudioDevice*>();
+	capturing = cap;
+	devices = new std::vector<SP_AudioDevice*>();
 	if (!refreshAudioDevices()) {
 		SDL_LogError(0, "Failed to initialize Audio Device Manager. refreshAudioDevices() returned false \n");
 	}
 }
 	
 SP_AudioDeviceManager::~SP_AudioDeviceManager() {
-		delete this->devices;
+		delete devices;
 }
